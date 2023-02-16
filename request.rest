@@ -1,0 +1,35 @@
+GET http://localhost:3000/api/contacts
+
+###
+
+GET http://localhost:3000/api/contacts/63edf13c55de36ae1c47a776
+
+###
+
+GET http://localhost:3000/api/contacts/favorite
+
+###
+
+POST http://localhost:3000/api/contacts
+Content-Type: application/json
+
+{
+    "name": "datnh 1",
+    "favorite": false
+}
+
+###
+
+PUT http://localhost:3000/api/contacts/favorite
+Content-Type: application/json
+
+{
+    "name": "datnh update",
+    "favorite": true
+}
+
+###
+DELETE  http://localhost:3000/api/contacts/63ededc607d5d37f292e438e
+
+###
+DELETE  http://localhost:3000/api/contacts
