@@ -10,20 +10,21 @@ class contactController {
     }
   }
 
-  addContact(req, res) {
-    const params = req.body;
+  async addContact(req, res) {
+    const params = req.body; //params = {name: "asb", favorite: abc}
     const newContact = new Contact(params);
-
-    newContact.save(function (err) {
-      if (!err) res.json("add contact successfull");
-      else res.status(500).json("loi server");
-    });
+    try {
+      await newContact.save();
+      res.json("add contact successful");
+    } catch (error) {
+      res.status(500).json("loi server");
+    }
   }
 
   async destroy(req, res) {
     try {
       await Contact.deleteMany();
-      res.json("destroy successfull");
+      res.json("destroy successful");
     } catch (error) {
       res.status(500).json("loi server");
     }
@@ -40,21 +41,22 @@ class contactController {
 
   async getOne(req, res) {
     const { id } = req.params;
-    
+
     try {
       const contacts = await Contact.findOne({ _id: id });
-      res.json(contacts);
+      res.json([contacts]);
     } catch (error) {
       res.status(500).json("loi server");
     }
   }
 
   async updateOne(req, res) {
-    const { id } = req.body;
+    const { id } = req.params;
+    const params = req.body;
 
     try {
-      await Contact.updateOne({ _id: id });
-      res.json("upate successfull");
+      await Contact.updateOne({ _id: id }, params);
+      res.json("update successful");
     } catch (error) {
       res.status(500).json("loi server");
     }
@@ -65,7 +67,7 @@ class contactController {
 
     try {
       await Contact.deleteOne({ _id: id });
-      res.json("delete successfull");
+      res.json("delete successful");
     } catch (error) {
       res.status(500).json("loi server");
     }
