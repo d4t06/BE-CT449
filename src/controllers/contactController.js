@@ -1,63 +1,74 @@
-const Contact = require ("../models/Contact")
+const Contact = require("../models/Contact");
 
 class contactController {
   async index(req, res) {
-    const contacts = await Contact.find({}).catch(err => {
-      res.status(500).json("loi server")
-    })
-    res.json(contacts)
+    try {
+      const contacts = await Contact.find({});
+      res.json(contacts);
+    } catch (error) {
+      res.status(500).json("loi server");
+    }
   }
 
   addContact(req, res) {
-      const params = req.body;
-      const newContact = new Contact(params);
+    const params = req.body;
+    const newContact = new Contact(params);
 
-      newContact.save(function (err) {
-         if (!err) res.json("add contact successfull");
-         else console.log(err);
-      });
+    newContact.save(function (err) {
+      if (!err) res.json("add contact successfull");
+      else res.status(500).json("loi server");
+    });
   }
 
   async destroy(req, res) {
-    await Contact.deleteMany().catch(err => {
-      res.status(500).json("loi server")
-    })
-    res.json("destroy successfull")
+    try {
+      await Contact.deleteMany();
+      res.json("destroy successfull");
+    } catch (error) {
+      res.status(500).json("loi server");
+    }
   }
 
   async favorite(req, res) {
-    const contacts = await Contact.find({favorite: true}).catch(err => {
-      res.status(500).json("loi server")
-    })
-    res.json(contacts)
+    try {
+      const contacts = await Contact.find({ favorite: true });
+      res.json(contacts);
+    } catch (error) {
+      res.status(500).json("loi server");
+    }
   }
 
   async getOne(req, res) {
-    const {id} = req.params
-
-    const contacts = await Contact.findOne({_id: id}).catch(err => {
-      res.status(500).json("loi server")
-    })
-    res.json(contacts)
-
+    const { id } = req.params;
+    
+    try {
+      const contacts = await Contact.findOne({ _id: id });
+      res.json(contacts);
+    } catch (error) {
+      res.status(500).json("loi server");
+    }
   }
 
   async updateOne(req, res) {
-    const {id} = req.params
-    const params = req.body
+    const { id } = req.body;
 
-    await Contact.updateOne(params).catch(err => {
-      res.status(500).json("loi server")
-    })
-    res.json("upate successfull")
+    try {
+      await Contact.updateOne({ _id: id });
+      res.json("upate successfull");
+    } catch (error) {
+      res.status(500).json("loi server");
+    }
   }
-  async deleteOne(req, res) {
-    const {id} = req.params
 
-    await Contact.deleteOne({_id: id}).catch(err => {
-      res.status(500).json("loi server")
-    })
-    res.json("delete successfull")
+  async deleteOne(req, res) {
+    const { id } = req.params;
+
+    try {
+      await Contact.deleteOne({ _id: id });
+      res.json("delete successfull");
+    } catch (error) {
+      res.status(500).json("loi server");
+    }
   }
 }
 
