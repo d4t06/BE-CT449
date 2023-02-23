@@ -26,10 +26,22 @@ Content-Type: application/json
 
 
 ###
-DELETE  http://localhost:3000/api/contacts/63f5ce2acb229fea947e91a3
+DELETE  http://localhost:3000/api/contacts/63f59c48efaac664ff3c16ca
 
 ### destroy
 DELETE  http://localhost:3000/api/contacts
 
 ###
 GET http://localhost:3000/auwdhfsiefijsef/sefsefsef/sefse
+
+###
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "username": "datnh",
+    "password": 123123
+}
+
+###
+GET http://localhost:3000/login
