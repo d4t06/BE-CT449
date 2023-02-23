@@ -1,0 +1,16 @@
+[
+    {
+        "name": "nguyen huu dat",
+        "email": "datnh@gmail.com",
+        "phone": "123456",
+        "address": "An Giang",
+        "favorite": true
+    },
+    {
+        "name": "nguyen van b",
+        "email": "bnv@gmail.com",
+        "phone": "112233",
+        "address": "Can Tho",
+        "favorite": false
+    }
+]
