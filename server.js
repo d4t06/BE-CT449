@@ -3,9 +3,13 @@ const app = express()
 const port = 3000
 const route = require('./src/routes')
 const session = require("express-session");
+const cors = require('cors')
 
 // connect database
 require("./connectDB");
+
+// use cors
+app.use(cors({credentials: true, origin: "http://localhost:3001"}))
 
 // define json type
 app.use(express.json());

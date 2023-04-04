@@ -6,13 +6,13 @@ const contactController = require ("../controllers/contactController")
 const roleMiddleware = require("../middlewares/roleMiddleware")
 
 route.get("/", contactController.index);
-route.post("/",roleMiddleware.isAdmin, contactController.addContact)
-route.delete("/",roleMiddleware.isAdmin, contactController.destroy)
+route.post("/", contactController.addContact)
+route.delete("/", contactController.destroy)
 
 route.get("/favorite", contactController.favorite)
 route.get("/:id", contactController.getOne)
-route.put("/:id",roleMiddleware.isAdmin, contactController.updateOne)
-route.delete("/:id",roleMiddleware.isAdmin, contactController.deleteOne)
+route.put("/:id", contactController.updateOne)
+route.delete("/:id", contactController.deleteOne)
 
 
 module.exports = route;
