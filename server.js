@@ -4,13 +4,12 @@ const cors = require('cors')
 const port = 3000
 const route = require('./src/routes')
 const session = require("express-session");
-const cookieParser = require("cookie-parser")
 
 // connect database
 require("./connectDB");
 
-// config cors
-app.use(cors('http://localhost:30001'))
+// use cors
+app.use(cors({credentials: true, origin: "http://localhost:3001"}))
 
 //use Session
 app.use(session({
@@ -19,9 +18,6 @@ app.use(session({
   saveUninitialized: true,
   cookie:{maxAge: 5 * 60 * 1000}
 }))
-
-// cookie parser
-// app.use(cookieParser())
 
 // define json type
 app.use(express.json());

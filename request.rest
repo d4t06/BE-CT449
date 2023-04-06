@@ -7,21 +7,15 @@ GET http://localhost:3000/api/contacts/63f5cde4f479a85b21c31d34
 GET http://localhost:3000/api/contacts/favorite
 
 ### add contact
-POST http://localhost:3000/api/contacts
-Content-Type: application/json
-
-{
-    "name": "nguyen huu dat dep trai",
-    "favorite": true
-}
+POST http://localhost:3000/api/contacts?key=dat
 
 
 ### update contact
-PUT http://localhost:3000/api/contacts/63f5da94eb44ecf7f19af5a3
+PUT http://localhost:3000/api/contacts/6422db66382fc92285be3012
 Content-Type: application/json
 
 {
-    "favorite": false
+    "name": "nguyen huu dat update 2"
 }
 
 

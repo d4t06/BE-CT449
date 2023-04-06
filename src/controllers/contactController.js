@@ -1,3 +1,4 @@
+const { query } = require("express");
 const Contact = require("../models/Contact");
 
 class contactController {
@@ -70,6 +71,23 @@ class contactController {
       res.json("delete successful");
     } catch (error) {
       res.status(500).json("loi server");
+    }
+  }
+
+  async search (req, res) {
+    const {q} = req.query
+
+    try {
+      const response = await Contact.find({$or:[
+        {name: new RegExp(q, "i")},
+        {address: new RegExp(q, "i")},
+        {phone: new RegExp(q, "i")},
+        {email: new RegExp(q, "i")}
+      ]})
+
+      res.json(response)
+    } catch (error) {
+      res.status(500).json('server error')
     }
   }
 }
